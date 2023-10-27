@@ -14,6 +14,12 @@ namespace Player
         private Rigidbody2D rb;
         private Animator animator;
 
+        // Tilemap
+        [SerializeField] TilemapMarkerManager tilemapMarkerManager;
+        [SerializeField] TilemapReader tileMapReader;
+        Vector3Int selectedTilePosition;
+        public bool useGrid = false;
+
         // Animation states
         string currentState;
         const string GROUND_IDLE = "Crow_Ground_Idle";
@@ -39,7 +45,7 @@ namespace Player
 
         #endregion
 
-
+        #region Runtime
         // Start is called before the first frame update
         void Start()
         {
@@ -67,7 +73,9 @@ namespace Player
 
             ChangeAnimationState(tempState);
         }
+        #endregion
 
+        #region Animation
         private string DetermineAnimationState(float inputH, float inputV)
         {
             // Seperate states for fly and ground modes
@@ -98,6 +106,8 @@ namespace Player
 
             currentState = newState;
         }
+        #endregion
+
     }
 }
 
